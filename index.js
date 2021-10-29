@@ -100,6 +100,4 @@ const convert_number = (number) => {
   return res;
 };
 
-console.log(ruppesInWord(1003));
-
 module.exports = ruppesInWord;
