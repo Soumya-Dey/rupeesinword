@@ -3,9 +3,19 @@
   "version": "0.0.1-beta1",
   "description": "A Node.js package to convert rupee to words.",
   "main": "index.js",
+  "homepage": "https://github.com/Soumya-Dey/rupeesinword",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Soumya-Dey/rupeesinword.git"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Soumya Dey",
+  "keywords": [
+    "ruppes",
+    "numbers",
+    "currency"
+  ],
+  "author": "Soumya Dey <soumyadey200@gmail.com> (https://soumya-dey.github.io/)",
   "license": "MIT"
 }

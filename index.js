@@ -1,21 +1,22 @@
-function number2text(value) {
+const required = (varName) => {
+  throw new Error(`${varName} is required.`);
+};
+
+const ruppesInWord = (value = required('value')) => {
   var fraction = Math.round(frac(value) * 100);
   var f_text = '';
 
   if (fraction > 0) {
-    f_text = 'AND ' + convert_number(fraction) + ' PAISE';
+    f_text = ' and ' + convert_number(fraction) + ' Paise';
   }
 
-  return convert_number(value) + ' RUPEE ' + f_text + ' ONLY';
-}
+  return convert_number(value) + ' Rupees' + f_text + ' Only';
+};
 
-function frac(f) {
-  return f % 1;
-}
-
-function convert_number(number) {
+const frac = (f) => f % 1;
+const convert_number = (number) => {
   if (number < 0 || number > 999999999) {
-    return 'NUMBER OUT OF RANGE!';
+    return 'Number out of range!';
   }
   var Gn = Math.floor(number / 10000000); /* Crore */
   number -= Gn * 10000000;
@@ -30,57 +31,57 @@ function convert_number(number) {
   var res = '';
 
   if (Gn > 0) {
-    res += convert_number(Gn) + ' CRORE';
+    res += convert_number(Gn) + ' Crore';
   }
   if (kn > 0) {
-    res += (res == '' ? '' : ' ') + convert_number(kn) + ' LAKH';
+    res += (res == '' ? '' : ' ') + convert_number(kn) + ' Lakh';
   }
   if (Hn > 0) {
-    res += (res == '' ? '' : ' ') + convert_number(Hn) + ' THOUSAND';
+    res += (res == '' ? '' : ' ') + convert_number(Hn) + ' Thousand';
   }
 
   if (Dn) {
-    res += (res == '' ? '' : ' ') + convert_number(Dn) + ' HUNDRED';
+    res += (res == '' ? '' : ' ') + convert_number(Dn) + ' Hundred';
   }
 
   var ones = Array(
     '',
-    'ONE',
-    'TWO',
-    'THREE',
-    'FOUR',
-    'FIVE',
-    'SIX',
-    'SEVEN',
-    'EIGHT',
-    'NINE',
-    'TEN',
-    'ELEVEN',
-    'TWELVE',
-    'THIRTEEN',
-    'FOURTEEN',
-    'FIFTEEN',
-    'SIXTEEN',
-    'SEVENTEEN',
-    'EIGHTEEN',
-    'NINETEEN'
+    'One',
+    'Two',
+    'Three',
+    'Four',
+    'Five',
+    'Six',
+    'Seven',
+    'Eight',
+    'Nine',
+    'Ten',
+    'Eleven',
+    'Twelve',
+    'Thirteen',
+    'Fourteen',
+    'Fifteen',
+    'Sixteen',
+    'Seventeen',
+    'Eighteen',
+    'Nineteen'
   );
   var tens = Array(
     '',
     '',
-    'TWENTY',
-    'THIRTY',
-    'FOURTY',
-    'FIFTY',
-    'SIXTY',
-    'SEVENTY',
-    'EIGHTY',
-    'NINETY'
+    'Twenty',
+    'Thirty',
+    'Fourty',
+    'Fifty',
+    'Sixty',
+    'Seventy',
+    'Eighty',
+    'Ninety'
   );
 
   if (tn > 0 || one > 0) {
     if (!(res == '')) {
-      res += ' AND ';
+      res += ' and ';
     }
     if (tn < 2) {
       res += ones[tn * 10 + one];
@@ -95,5 +96,10 @@ function convert_number(number) {
   if (res == '') {
     res = 'zero';
   }
+
   return res;
-}
+};
+
+console.log(ruppesInWord(1003));
+
+module.exports = ruppesInWord;
