@@ -1,7 +1,7 @@
 {
-  "name": "rupeetoword",
-  "version": "1.0.0",
-  "description": "",
+  "name": "rupeesinword",
+  "version": "0.0.1-beta1",
+  "description": "A Node.js package to convert rupee to words.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
