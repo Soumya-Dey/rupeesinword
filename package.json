@@ -1,7 +1,7 @@
 {
   "name": "rupeesinword",
-  "version": "0.0.1",
-  "description": "A Node.js package to convert rupee to words.",
+  "version": "1.0.0",
+  "description": "A Node.js package to convert rupees and show in words.",
   "main": "index.js",
   "homepage": "https://github.com/Soumya-Dey/rupeesinword",
   "repository": {
@@ -12,7 +12,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
-    "ruppes",
+    "rupees",
     "numbers",
     "currency"
   ],
