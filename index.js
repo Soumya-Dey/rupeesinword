@@ -21,9 +21,21 @@ const ruppesInWord = (
       lang
     )} ${languages['Paisa'][lang]}`;
   }
-  const output = `${convertNumber(value, lang)} ${
+
+  let output = `${convertNumber(value, lang)} ${
     languages['Rupees'][lang]
   }${fractionText} ${languages['Only'][lang]}`;
+
+  if (lang != 'English') {
+    output.split('  ').forEach((word) => {
+      if (word.includes('-')) {
+        output = output.replace(
+          word.trim(),
+          languages['betweens'][lang][word.trim()]
+        );
+      }
+    });
+  }
 
   return outputCase == 'Title'
     ? output
@@ -97,7 +109,5 @@ const convertNumber = (number, lang = 'English') => {
 
   return res;
 };
-
-console.log(ruppesInWord(345.56, { lang: 'Bangla', outputCase: 'Title' }));
 
 module.exports = ruppesInWord;
