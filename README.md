@@ -3,7 +3,7 @@
 
 <div align="center">
 
-A Node.js package to convert rupees and show in words.
+A Node.js package to convert rupees and show in words with support for 9 indian regional languages (Bangla, Hindi, Gujarati, Kannada, Marathi, Odia, Punjabi, Tamil, Telugu).
 
 [![license](https://img.shields.io/npm/l/rupeesinword)](https://github.com/Soumya-Dey/rupeesinword/blob/main/LICENSE)
 [![npm latest package](https://img.shields.io/npm/v/rupeesinword/latest)](https://www.npmjs.com/package/rupeesinword)
