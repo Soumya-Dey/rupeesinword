@@ -30,17 +30,51 @@ $ npm i rupeesinword
 $ yarn add rupeesinword
 ```
 
-## Example
+## Usage
+
+1. Import the package
 
 ```js
 const rupeesInWord = require('rupeesinword');
-
-const value = 1204.76;
-const word = rupeesInWord(value);
-
-console.log(word);
-// One Thousand Two Hundred and Four Rupees and Seventy-Six Paise Only
 ```
+
+2. For English
+
+```js
+const value = 1254.76;
+const word = rupeesInWord(value);
+console.log(word);
+// One Thousand Two Hundred and Fifty-Four Rupees and Seventy-Six Paisa Only
+```
+
+3. For Other Indian Regional Languages
+
+> Currently 9 regional languages are supported. Following is the list of supported regional languages.
+
+> **Bangla, Hindi, Gujarati, Kannada, Marathi, Odia, Punjabi, Tamil, Telugu**
+
+```js
+const value = 1254.76;
+const options = { lang: 'Bangla', outputCase: 'Title' };
+const word = rupeesInWord(value, options);
+console.log(word);
+// এক হাজার দুই শত চুয়ান্ন টাকা ছিয়াত্তর পয়সা
+```
+
+```js
+const value = 1254.76;
+const options = { lang: 'Hindi', outputCase: 'Title' };
+const word = rupeesInWord(value, options);
+console.log(word);
+// एक हज़ार दो सौ और चौवन रुपये और छिहत्तर पैसे
+```
+
+## Options
+
+| Property   | Type   | Optional | Default   | Accepted Values                                                                                      |
+| :--------- | :----- | :------- | :-------- | :--------------------------------------------------------------------------------------------------- |
+| lang       | string | Yes      | "English" | "English", "Bangla", "Hindi", "Gujarati", "Kannada", "Marathi", "Odia", "Punjabi", "Tamil", "Telugu" |
+| outputCase | string | Yes      | "Title"   | "Title", "Upper", "Lower"                                                                            |
 
 ## Issues
 

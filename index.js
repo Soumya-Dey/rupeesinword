@@ -5,7 +5,7 @@ const requiredInput = (param) => {
   throw new Error(`${param} is required.`);
 };
 
-const ruppesInWord = (
+const rupeesInWord = (
   value = requiredInput('value'),
   { lang = 'English', outputCase = 'Title' } = {}
 ) => {
@@ -35,6 +35,10 @@ const ruppesInWord = (
         );
       }
     });
+  }
+
+  while (output.includes('  ')) {
+    output = output.replace('  ', ' ');
   }
 
   return outputCase == 'Title'
@@ -110,4 +114,4 @@ const convertNumber = (number, lang = 'English') => {
   return res;
 };
 
-module.exports = ruppesInWord;
+module.exports = rupeesInWord;
