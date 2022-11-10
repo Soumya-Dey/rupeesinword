@@ -1,87 +1,85 @@
-const required = (varName) => {
-  throw new Error(`${varName} is required.`);
+const languages = require('./languages');
+const { langOptions, caseOptions } = require('./utils');
+
+const requiredInput = (param) => {
+  throw new Error(`${param} is required.`);
 };
 
-const ruppesInWord = (value = required('value')) => {
-  var fraction = Math.round(frac(value) * 100);
-  var f_text = '';
+const ruppesInWord = (
+  value = requiredInput('value'),
+  { lang = 'English', outputCase = 'Title' } = {}
+) => {
+  lang = langOptions.includes(lang) ? lang : 'English';
+  outputCase = caseOptions.includes(outputCase) ? outputCase : 'Title';
+
+  let fraction = Math.round(frac(value) * 100);
+  let fractionText = '';
 
   if (fraction > 0) {
-    f_text = ' and ' + convert_number(fraction) + ' Paise';
+    fractionText = ` ${languages['and'][lang]} ${convertNumber(
+      fraction,
+      lang
+    )} ${languages['Paisa'][lang]}`;
   }
+  const output = `${convertNumber(value, lang)} ${
+    languages['Rupees'][lang]
+  }${fractionText} ${languages['Only'][lang]}`;
 
-  return convert_number(value) + ' Rupees' + f_text + ' Only';
+  return outputCase == 'Title'
+    ? output
+    : outputCase == 'Upper'
+    ? output.toUpperCase()
+    : outputCase == 'Lower'
+    ? output.toLowerCase()
+    : output;
 };
 
 const frac = (f) => f % 1;
-const convert_number = (number) => {
+const convertNumber = (number, lang = 'English') => {
   if (number < 0 || number > 999999999) {
-    return 'Number out of range!';
+    throw new Error(`Number out of range!`);
   }
-  var Gn = Math.floor(number / 10000000); /* Crore */
+  let Gn = Math.floor(number / 10000000); /* Crore */
   number -= Gn * 10000000;
-  var kn = Math.floor(number / 100000); /* lakhs */
+  let kn = Math.floor(number / 100000); /* lakhs */
   number -= kn * 100000;
-  var Hn = Math.floor(number / 1000); /* thousand */
+  let Hn = Math.floor(number / 1000); /* thousand */
   number -= Hn * 1000;
-  var Dn = Math.floor(number / 100); /* Tens (deca) */
+  let Dn = Math.floor(number / 100); /* Tens (deca) */
   number = number % 100; /* Ones */
-  var tn = Math.floor(number / 10);
-  var one = Math.floor(number % 10);
-  var res = '';
+  let tn = Math.floor(number / 10);
+  let one = Math.floor(number % 10);
+  let res = '';
 
   if (Gn > 0) {
-    res += convert_number(Gn) + ' Crore';
+    res += convertNumber(Gn, lang) + ` ${languages['Crore'][lang]}`;
   }
   if (kn > 0) {
-    res += (res == '' ? '' : ' ') + convert_number(kn) + ' Lakh';
+    res +=
+      (res == '' ? '' : ' ') +
+      convertNumber(kn, lang) +
+      ` ${languages['Lakh'][lang]}`;
   }
   if (Hn > 0) {
-    res += (res == '' ? '' : ' ') + convert_number(Hn) + ' Thousand';
+    res +=
+      (res == '' ? '' : ' ') +
+      convertNumber(Hn, lang) +
+      ` ${languages['Thousand'][lang]}`;
   }
 
   if (Dn) {
-    res += (res == '' ? '' : ' ') + convert_number(Dn) + ' Hundred';
+    res +=
+      (res == '' ? '' : ' ') +
+      convertNumber(Dn, lang) +
+      ` ${languages['Hundred'][lang]}`;
   }
 
-  var ones = Array(
-    '',
-    'One',
-    'Two',
-    'Three',
-    'Four',
-    'Five',
-    'Six',
-    'Seven',
-    'Eight',
-    'Nine',
-    'Ten',
-    'Eleven',
-    'Twelve',
-    'Thirteen',
-    'Fourteen',
-    'Fifteen',
-    'Sixteen',
-    'Seventeen',
-    'Eighteen',
-    'Nineteen'
-  );
-  var tens = Array(
-    '',
-    '',
-    'Twenty',
-    'Thirty',
-    'Fourty',
-    'Fifty',
-    'Sixty',
-    'Seventy',
-    'Eighty',
-    'Ninety'
-  );
+  let ones = languages['ones'][lang];
+  let tens = languages['tens'][lang];
 
   if (tn > 0 || one > 0) {
-    if (!(res == '')) {
-      res += ' and ';
+    if (res != '') {
+      res += ` ${languages['and'][lang]} `;
     }
     if (tn < 2) {
       res += ones[tn * 10 + one];
@@ -94,10 +92,12 @@ const convert_number = (number) => {
   }
 
   if (res == '') {
-    res = 'zero';
+    res = languages['zero'][lang];
   }
 
   return res;
 };
+
+console.log(ruppesInWord(345.56, { lang: 'Bangla', outputCase: 'Title' }));
 
 module.exports = ruppesInWord;

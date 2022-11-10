@@ -1,7 +1,7 @@
 {
   "name": "rupeesinword",
-  "version": "1.0.0",
-  "description": "A Node.js package to convert rupees and show in words.",
+  "version": "1.1.0",
+  "description": "A Node.js package to convert rupees and show in words with support for 9 indian regional languages.",
   "main": "index.js",
   "homepage": "https://github.com/Soumya-Dey/rupeesinword",
   "repository": {
@@ -13,8 +13,14 @@
   },
   "keywords": [
     "rupees",
+    "paisa",
     "numbers",
-    "currency"
+    "words",
+    "currency",
+    "regional",
+    "language",
+    "indian",
+    "india"
   ],
   "author": "Soumya Dey <soumyadey200@gmail.com> (https://soumya-dey.github.io/)",
   "license": "MIT"
